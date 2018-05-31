@@ -1,0 +1,16 @@
+---
+- name: Configure CI server
+  hosts: ci-server
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  pre_tasks:
+    - name: Include variables
+      include_vars: "variables.yml"
+
+  roles:
+    - git
+    - java
+    - geerlingguy.jenkins
+    - create-ansible-user-on-jenkins

@@ -1,0 +1,8 @@
+#SSH into EC2 instance
+ssh -i ~/.ssh/28thMay2018.pem ec2-user@34.244.44.179
+
+#Log into Jenkins
+https://stackoverflow.com/questions/15227305/what-is-the-default-jenkins-password
+
+#Set up account
+echo 'hpsr=new hudson.security.HudsonPrivateSecurityRealm(false); hpsr.createAccount("ansible", "abc123][{}")' | java -jar /opt/jenkins-cli.jar -s http://localhost:8080 groovy =

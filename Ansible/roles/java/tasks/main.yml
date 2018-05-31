@@ -1,0 +1,5 @@
+---
+  - name: Remove old version of Java
+    yum:
+      name=java-1.7.0-openjdk.x86_64
+      state=removed
