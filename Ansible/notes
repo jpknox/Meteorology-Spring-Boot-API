@@ -1,5 +1,5 @@
 #SSH into EC2 instance
-ssh -i ~/.ssh/28thMay2018.pem ec2-user@34.244.44.179
+ssh -i ~/.ssh/28thMay2018.pem ec2-user@34.240.123.164
 
 #Log into Jenkins
 https://stackoverflow.com/questions/15227305/what-is-the-default-jenkins-password

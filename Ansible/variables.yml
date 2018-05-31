@@ -3,3 +3,5 @@ jenkins_http_port: 8080
 jenkins_url_prefix: ""
 jenkins_connection_retries: 60
 jenkins_connection_delay: 5
+
+admin_password: s0m3th1ngs3cu4e

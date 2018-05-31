@@ -15,10 +15,13 @@
     check_mode: no
     
   - name: Create a user for Ansible on the new Jenkins CLI server
-    shell: echo 'hpsr=new hudson.security.HudsonPrivateSecurityRealm(false); hpsr.createAccount("ansible2", "@bc12E")' | java -jar /opt/jenkins-cli.jar -s http://localhost:8080 groovy =
-    
-  - name: Set Jenkin's security flag to true
-    shell: sed -i 's/useSecurity>false/useSecurity>true/g' /var/lib/jenkins/config.xml
+    shell: echo 'hpsr=new hudson.security.HudsonPrivateSecurityRealm(false); hpsr.createAccount("ansible", "@bc12E4")' | java -jar /opt/jenkins-cli.jar -s http://localhost:8080 groovy =
+
+  - name: Change Admin account's default password
+    shell: echo 'hpsr=new hudson.security.HudsonPrivateSecurityRealm(false); hpsr.createAccount("admin", "{{ admin_password }}")' | java -jar /opt/jenkins-cli.jar -s http://localhost:8080 groovy =
+
+  - name: Enforce login to use Jenkins
+    shell: echo 'jenkins = jenkins.model.Jenkins.get(); jenkins.setSecurityRealm(new hudson.security.HudsonPrivateSecurityRealm(false, false, null)); auth = new hudson.security.FullControlOnceLoggedInAuthorizationStrategy(); auth.setAllowAnonymousRead(false); jenkins.setAuthorizationStrategy(auth); jenkins.save()' | java -jar /opt/jenkins-cli.jar -s http://localhost:8080 groovy =
 
   - name: Restart Jenkin's to enforce new security settings
     service: name=jenkins state=restarted enabled=yes
